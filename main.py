@@ -1,7 +1,6 @@
-def read():
-    with open("books/frankenstein.txt") as f:
-        contents = f.read()
-    return contents
+def read(book):
+    with open(book) as f:
+        return f.read()
 
 def count_words(text):
     words = text.split()
@@ -17,7 +16,8 @@ def count_letters(text):
     return letters
 
 def main():
-    contents = read()
+    current_book = "books/frankenstein.txt"
+    contents = read(current_book)
     print(f"The book contains {count_words(contents)} words")
     print(count_letters(contents))
 
