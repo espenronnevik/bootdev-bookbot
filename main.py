@@ -3,16 +3,17 @@ def read(book):
         return f.read()
 
 def count_words(text):
-    words = text.split()
-    return len(words)
+    return len(text.split())
 
 def count_letters(text):
+    valid_letters = "abcdefghijklmnopqrstuvwxyz"
     letters = {}
     for c in text.lower():
-        if c in letters:
-            letters[c] += 1
-        else:
-            letters[c] = 1
+        if c in valid_letters:
+            if c in letters:
+                letters[c] += 1
+            else:
+                letters[c] = 1
     return letters
 
 def main():
