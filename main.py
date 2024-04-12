@@ -6,20 +6,33 @@ def count_words(text):
     return len(text.split())
 
 def count_letters(text):
-    valid_letters = "abcdefghijklmnopqrstuvwxyz"
-    letters = {}
+    chars = {}
+    charlist = []
     for c in text.lower():
-        if c in valid_letters:
-            if c in letters:
-                letters[c] += 1
+        if c.isalpha():
+            if c in chars:
+                chars[c] += 1
             else:
-                letters[c] = 1
-    return letters
+                chars[c] = 1
+    for c in chars:
+        charlist.append({"char": c, "count": chars[c]})
+    charlist.sort(reverse=True, key=char_sort)
+    return charlist
+
+def char_sort(dict):
+    return dict["count"]
+
+def print_report(book, words, chars):
+    print(f"--- Begin report of {book} ---")
+    print(f"{words} words found in the document")
+    print("")
+    for chardict in chars:
+        print(f"The {chardict['char']} character was found {chardict['count']} times")
+    print("--- End of report ---")
 
 def main():
     current_book = "books/frankenstein.txt"
     contents = read(current_book)
-    print(f"The book contains {count_words(contents)} words")
-    print(count_letters(contents))
+    print_report(current_book, count_words(contents), count_letters(contents))
 
 main()
