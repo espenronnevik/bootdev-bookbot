@@ -2,8 +2,10 @@ def read(book):
     with open(book) as f:
         return f.read()
 
+
 def count_words(text):
     return len(text.split())
+
 
 def count_letters(text):
     chars = {}
@@ -19,8 +21,10 @@ def count_letters(text):
     charlist.sort(reverse=True, key=char_sort)
     return charlist
 
+
 def char_sort(dict):
     return dict["count"]
+
 
 def print_report(book, words, chars):
     print(f"--- Begin report of {book} ---")
@@ -30,9 +34,11 @@ def print_report(book, words, chars):
         print(f"The {chardict['char']} character was found {chardict['count']} times")
     print("--- End of report ---")
 
+
 def main():
     current_book = "books/frankenstein.txt"
     contents = read(current_book)
     print_report(current_book, count_words(contents), count_letters(contents))
+
 
 main()
